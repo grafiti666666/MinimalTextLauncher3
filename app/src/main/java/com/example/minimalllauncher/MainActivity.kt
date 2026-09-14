@@ -2,11 +2,9 @@ package com.example.minimalllauncher
 
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.os.BatteryManager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -17,14 +15,13 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import java.util.Locale
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 
@@ -36,26 +33,23 @@ data class LaunchableApp(
 class MainActivity : ComponentActivity() {
 
     private val appList = mutableStateOf<List<LaunchableApp>>(emptyList())
-    private val batteryLevel = mutableIntStateOf(0)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         WindowCompat.getInsetsController(window, window.decorView).hide(
-    WindowInsetsCompat.Type.statusBars()
-)
+            WindowInsetsCompat.Type.statusBars()
+        )
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
         window.statusBarColor = android.graphics.Color.BLACK
         window.navigationBarColor = android.graphics.Color.BLACK
 
         loadApps()
-        updateBattery()
 
         setContent {
             MinimalLauncher(
                 apps = appList.value,
-                battery = batteryLevel.intValue,
                 onLaunch = { packageName -> launchApp(packageName) }
             )
         }
@@ -63,13 +57,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onResume() {
         super.onResume()
-        updateBattery()
         loadApps()
-    }
-
-    private fun updateBattery() {
-        val manager = getSystemService(BATTERY_SERVICE) as BatteryManager
-        batteryLevel.intValue = manager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
     }
 
     private fun loadApps() {
@@ -104,7 +92,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 private fun MinimalLauncher(
     apps: List<LaunchableApp>,
-    battery: Int,
     onLaunch: (String) -> Unit
 ) {
     val fontFamily = FontFamily.SansSerif
@@ -124,19 +111,6 @@ private fun MinimalLauncher(
                     bottom = 28.dp
                 )
             ) {
-                item {
-                    Text(
-                        text = battery.coerceIn(0, 100).toString(),
-                        color = Color.White,
-                        fontFamily = fontFamily,
-                        fontSize = 22.sp,
-                        fontWeight = FontWeight.Normal,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(bottom = 28.dp)
-                    )
-                }
-
                 items(
                     items = apps,
                     key = { it.packageName }
