@@ -26,6 +26,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
 import java.util.Locale
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 
 data class LaunchableApp(
     val label: String,
@@ -39,6 +41,10 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        WindowCompat.getInsetsController(window, window.decorView).hide(
+    WindowInsetsCompat.Type.statusBars()
+)
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
         window.statusBarColor = android.graphics.Color.BLACK
