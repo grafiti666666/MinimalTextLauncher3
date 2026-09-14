@@ -20,7 +20,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -103,11 +102,7 @@ private fun MinimalLauncher(
     battery: Int,
     onLaunch: (String) -> Unit
 ) {
-    // Manrope is a free, open-source font with a clean geometric appearance.
-    // Google Fonts supplies it at runtime/cache; the system falls back gracefully.
-    val fontFamily = FontFamily(
-        Font("sans-serif", FontWeight.Normal)
-    )
+    val fontFamily = FontFamily.SansSerif
 
     MaterialTheme {
         Box(
