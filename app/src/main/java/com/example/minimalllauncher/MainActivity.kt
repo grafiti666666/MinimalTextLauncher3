@@ -57,6 +57,11 @@ class MainActivity : ComponentActivity() {
 
     override fun onResume() {
         super.onResume()
+
+        WindowCompat.getInsetsController(window, window.decorView).hide(
+        WindowInsetsCompat.Type.statusBars()
+    )
+        
         loadApps()
     }
 
