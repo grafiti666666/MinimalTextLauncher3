@@ -1,4 +1,3 @@
-```kotlin
 package com.example.minimalllauncher
 
 import android.content.Intent
@@ -144,4 +143,3 @@ private fun MinimalLauncher(
         }
     }
 }
-```
