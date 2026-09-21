@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "MinimalTextLauncher"
+rootProject.name = "SRMinimalTextLauncher"
 include(":app")
