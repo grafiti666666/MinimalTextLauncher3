@@ -1,3 +1,4 @@
+```kotlin
 package com.example.minimalllauncher
 
 import android.content.Intent
@@ -19,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -60,9 +62,9 @@ class MainActivity : ComponentActivity() {
         super.onResume()
 
         WindowCompat.getInsetsController(window, window.decorView).hide(
-        WindowInsetsCompat.Type.statusBars()
-    )
-        
+            WindowInsetsCompat.Type.statusBars()
+        )
+
         loadApps()
     }
 
@@ -100,7 +102,12 @@ private fun MinimalLauncher(
     apps: List<LaunchableApp>,
     onLaunch: (String) -> Unit
 ) {
-    val fontFamily = FontFamily.SansSerif
+    val fontFamily = FontFamily(
+        Font(
+            R.font.manrope_light,
+            FontWeight.Light
+        )
+    )
 
     MaterialTheme {
         Box(
@@ -125,8 +132,8 @@ private fun MinimalLauncher(
                         text = app.label,
                         color = Color.White,
                         fontFamily = fontFamily,
-                        fontSize = 22.sp,
-                        fontWeight = FontWeight.Normal,
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Light,
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable { onLaunch(app.packageName) }
@@ -137,3 +144,4 @@ private fun MinimalLauncher(
         }
     }
 }
+```
