@@ -1,4 +1,4 @@
-# Minimal Text Launcher
+# SR Minimal Text Launcher
 
 A radically minimalist Android launcher focused on simplicity, clarity, and distraction-free use.
 
