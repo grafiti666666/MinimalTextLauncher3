@@ -1,34 +1,29 @@
-# MinimalTextLauncher
+# Minimal Text Launcher
 
-Ein extrem minimalistischer Android-Launcher.
+A radically minimalist Android launcher focused on simplicity, clarity, and distraction-free use.
 
-## Konzept
+The home screen contains nothing but a clean, vertically scrollable alphabetical list of your installed apps. No icons, widgets, news feeds, wallpapers, or unnecessary interface elements.
 
-- schwarzer Hintergrund
-- weiße Textschrift
-- Batteriestand als erster Listeneintrag, ohne `%`
-- darunter alle startbaren Apps alphabetisch
-- keine Icons
-- keine Werbung
-- keine Widgets
-- keine zusätzlichen Bedienelemente
-- App-Einträge sind direkt anklickbar
-- vertikal scrollbar
+### Features
 
-## Build über GitHub Actions
+* Minimalist black-and-white interface
+* Installed apps displayed as a simple alphabetical text list
+* Tap an app name to launch it
+* Smooth vertical scrolling
+* Clean, elegant typography
+* No visual clutter
+* Designed as a simple replacement for the conventional Android home screen
 
-1. Repository auf GitHub erstellen.
-2. Alle Dateien dieses Projekts hochladen.
-3. Änderungen committen.
-4. `Actions` öffnen.
-5. `Build APK` auswählen.
-6. `Run workflow` starten.
-7. Nach erfolgreichem Build unter `Artifacts` die APK `MinimalTextLauncher-debug` herunterladen.
+### The idea
 
-## Launcher festlegen
+Modern smartphone interfaces often fill the home screen with visual elements and distractions.
 
-Nach der Installation kann Android fragen, ob Minimal Text Launcher als Standard-Start-App verwendet werden soll. Falls nicht, kann dies in den Android-Einstellungen unter den Standard-Apps bzw. der Home-App ausgewählt werden.
+Minimal Text Launcher takes the opposite approach.
 
-## Hinweis zur Schrift
+It reduces the Android home screen to its most essential function:
 
-Die aktuelle Version verwendet die systemeigene Sans-Schrift als robuste, offline-fähige Basis. Dadurch ist der Build vollständig unabhängig von einem externen Font-Download. Die Schrift kann im nächsten Schritt problemlos durch eine fest eingebettete freie Schrift wie Manrope ersetzt werden.
+**show your apps and let you launch them.**
+
+No icons. No widgets. No clutter.
+
+**Just text.**
