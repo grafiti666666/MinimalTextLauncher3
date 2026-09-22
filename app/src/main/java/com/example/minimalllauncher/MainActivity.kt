@@ -43,7 +43,6 @@ val packageName: String
 
 class MainActivity : ComponentActivity() {
 
-```
 private val appList = mutableStateOf<List<LaunchableApp>>(emptyList())
 private val usageAccessAvailable = mutableStateOf(false)
 private val showUsageDialog = mutableStateOf(false)
@@ -211,7 +210,6 @@ private fun launchApp(packageName: String) {
         startActivity(intent)
     }
 }
-```
 
 }
 
@@ -231,7 +229,6 @@ FontWeight.Light
 )
 )
 
-```
 MaterialTheme {
     Box(
         modifier = Modifier
@@ -328,7 +325,6 @@ MaterialTheme {
         )
     }
 }
-```
 
 }
 
