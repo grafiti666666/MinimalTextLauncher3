@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <queries>
-        <intent>
+<uses-permission
+    android:name="android.permission.PACKAGE_USAGE_STATS" />
+
+<queries>
+    <intent>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+    </intent>
+</queries>
+
+<application
+    android:theme="@style/Theme.MinimalTextLauncher"
+    android:label="Minimal Text Launcher"
+    android:allowBackup="false"
+    android:supportsRtl="true">
+
+    <activity
+        android:name=".MainActivity"
+        android:exported="true">
+        <intent-filter>
             <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent>
-    </queries>
-
-    <application
-        android:theme="@style/Theme.MinimalTextLauncher"
-        android:label="Minimal Text Launcher"
-        android:allowBackup="false"
-        android:supportsRtl="true">
-
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.HOME" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-    </application>
+            <category android:name="android.intent.category.HOME" />
+            <category android:name="android.intent.category.DEFAULT" />
+        </intent-filter>
+    </activity>
+</application>
 
 </manifest>
