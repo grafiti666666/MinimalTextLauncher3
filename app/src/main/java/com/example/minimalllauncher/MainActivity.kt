@@ -24,6 +24,7 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -42,6 +43,7 @@ val packageName: String
 
 class MainActivity : ComponentActivity() {
 
+```
 private val appList = mutableStateOf<List<LaunchableApp>>(emptyList())
 private val usageAccessAvailable = mutableStateOf(false)
 private val showUsageDialog = mutableStateOf(false)
@@ -62,6 +64,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
     setContent {
         MinimalLauncher(
             apps = appList.value,
+            usageAccessAvailable = usageAccessAvailable.value,
             showUsageDialog = showUsageDialog.value,
             onLaunch = { packageName ->
                 launchApp(packageName)
@@ -115,6 +118,7 @@ private fun loadApps() {
 
     if (hasAccess) {
         val mostUsedApps = getMostUsedApps(apps)
+
         val mostUsedPackages = mostUsedApps
             .map { it.packageName }
             .toSet()
@@ -194,8 +198,7 @@ private fun openUsageAccessSettings() {
             Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
         )
     } catch (_: Exception) {
-        // Falls das Gerät diese Einstellungsseite nicht anbietet,
-        // bleibt der Launcher weiterhin normal verwendbar.
+        // Der Launcher bleibt auch ohne Nutzungszugriff funktionsfähig.
     }
 }
 
@@ -208,12 +211,14 @@ private fun launchApp(packageName: String) {
         startActivity(intent)
     }
 }
+```
 
 }
 
-@androidx.compose.runtime.Composable
+@Composable
 private fun MinimalLauncher(
 apps: List<LaunchableApp>,
+usageAccessAvailable: Boolean,
 showUsageDialog: Boolean,
 onLaunch: (String) -> Unit,
 onOpenUsageSettings: () -> Unit,
@@ -226,6 +231,7 @@ FontWeight.Light
 )
 )
 
+```
 MaterialTheme {
     Box(
         modifier = Modifier
@@ -243,9 +249,8 @@ MaterialTheme {
                     bottom = 28.dp
                 )
         ) {
-            if (usageAccessAvailable.value &&
-                apps.isNotEmpty()
-            ) {
+            if (usageAccessAvailable && apps.isNotEmpty()) {
+
                 items(
                     items = apps.take(6),
                     key = { it.packageName }
@@ -275,7 +280,9 @@ MaterialTheme {
                         )
                     }
                 }
+
             } else {
+
                 items(
                     items = apps,
                     key = { it.packageName }
@@ -321,10 +328,11 @@ MaterialTheme {
         )
     }
 }
+```
 
 }
 
-@androidx.compose.runtime.Composable
+@Composable
 private fun AppItem(
 app: LaunchableApp,
 fontFamily: FontFamily,
